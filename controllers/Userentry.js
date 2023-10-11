@@ -14,8 +14,8 @@ exports.createUser = async(req,res)=>
         const userdetail = await User.create({firstname,lastname,phone,email,message});
 
         console.log(userdetail);
-        // const response = await mailsender(firstname,lastname,email);
-        // console.log(response);
+        const response = await mailsender(firstname,lastname,email);
+        console.log(response);
         return res.status(200).json(
             {
                 success:true,
