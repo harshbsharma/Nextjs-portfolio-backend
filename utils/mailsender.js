@@ -13,13 +13,24 @@ const transporter = nodemailer.createTransport({
 
 exports.mailsender = async(firstname,lastname,email)=>
 {
-    const mailinfo = await transporter.sendMail({
-        from:"simple.good.smart@gmail.com",
-        to:"harshbsharma1209@gmail.com",
-        subject:"User is regiestered",
-        html:`<h1>${firstname} ${lastname} wants to Contact you. This is his Mail:- ${email}</h1>`
-    })
+    try
+    {
+     
+        const mailinfo = await transporter.sendMail({
+            from:"simple.good.smart@gmail.com",
+            to:"harshbsharma1209@gmail.com",
+            subject:"User is registered",
+            html:`<h1>${firstname} ${lastname} wants to Contact you. This is his Mail:- ${email}</h1>`
+        })
+        
+        return mailinfo;
 
-    return mailinfo;
+    }
+    catch(err)
+    {
+        console.log("Error in mail sending is -> ",err);
+        const msg = "Error in mail sending"; 
+        return msg;
+    }
 };
 
